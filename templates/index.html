@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel A2A Agent System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>✈️ Travel A2A Agent System</h1>
+            <p>Multi-Agent Travel Planning with Agent-to-Agent Protocol</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="plan-trip">Plan Complete Trip</button>
+                <button class="tab-btn" data-tab="flights">Flights</button>
+                <button class="tab-btn" data-tab="hotels">Hotels</button>
+                <button class="tab-btn" data-tab="activities">Activities</button>
+                <button class="tab-btn" data-tab="guide">Local Guide</button>
+                <button class="tab-btn" data-tab="ask">Ask Question</button>
+                <button class="tab-btn" data-tab="agents">View Agents</button>
+            </div>
+
+            <!-- Tab Contents -->
+            
+            <!-- Plan Complete Trip Tab -->
+            <div class="tab-content active" id="plan-trip">
+                <h2>🌍 Plan Your Complete Trip</h2>
+                <form id="plan-trip-form" class="form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="trip-destination">Destination *</label>
+                            <input type="text" id="trip-destination" placeholder="e.g., Paris" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="trip-start-date">Start Date *</label>
+                            <input type="date" id="trip-start-date" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="trip-duration">Duration (days) *</label>
+                            <input type="number" id="trip-duration" value="3" min="1" max="30" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="trip-budget">Budget</label>
+                            <select id="trip-budget">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trip-origin">Departure City</label>
+                        <input type="text" id="trip-origin" placeholder="e.g., New York">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="trip-interests">Interests (comma-separated)</label>
+                        <input type="text" id="trip-interests" placeholder="e.g., culture, food, adventure">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Plan My Trip</button>
+                </form>
+                
+                <div id="trip-results" class="results"></div>
+            </div>
+
+            <!-- Flights Tab -->
+            <div class="tab-content" id="flights">
+                <h2>✈️ Search Flights</h2>
+                <form id="flight-form" class="form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="flight-origin">From *</label>
+                            <input type="text" id="flight-origin" placeholder="e.g., New York" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="flight-destination">To *</label>
+                            <input type="text" id="flight-destination" placeholder="e.g., Paris" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="flight-date">Date *</label>
+                            <input type="date" id="flight-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="flight-passengers">Passengers</label>
+                            <input type="number" id="flight-passengers" value="1" min="1" max="9">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Search Flights</button>
+                </form>
+                
+                <div id="flight-results" class="results"></div>
+            </div>
+
+            <!-- Hotels Tab -->
+            <div class="tab-content" id="hotels">
+                <h2>🏨 Search Hotels</h2>
+                <form id="hotel-form" class="form">
+                    <div class="form-group">
+                        <label for="hotel-location">Location *</label>
+                        <input type="text" id="hotel-location" placeholder="e.g., Paris" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hotel-checkin">Check-in *</label>
+                            <input type="date" id="hotel-checkin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hotel-checkout">Check-out *</label>
+                            <input type="date" id="hotel-checkout" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hotel-guests">Guests</label>
+                            <input type="number" id="hotel-guests" value="1" min="1" max="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="hotel-budget">Budget</label>
+                            <select id="hotel-budget">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Search Hotels</button>
+                </form>
+                
+                <div id="hotel-results" class="results"></div>
+            </div>
+
+            <!-- Activities Tab -->
+            <div class="tab-content" id="activities">
+                <h2>🎭 Find Activities</h2>
+                <form id="activity-form" class="form">
+                    <div class="form-group">
+                        <label for="activity-location">Location *</label>
+                        <input type="text" id="activity-location" placeholder="e.g., Paris" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="activity-interests">Interests (comma-separated)</label>
+                        <input type="text" id="activity-interests" placeholder="e.g., culture, food, adventure">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="activity-budget">Budget</label>
+                        <select id="activity-budget">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Find Activities</button>
+                </form>
+                
+                <div id="activity-results" class="results"></div>
+            </div>
+
+            <!-- Guide Tab -->
+            <div class="tab-content" id="guide">
+                <h2>📍 Local Guide Information</h2>
+                <form id="guide-form" class="form">
+                    <div class="form-group">
+                        <label for="guide-location">Location *</label>
+                        <input type="text" id="guide-location" placeholder="e.g., Paris" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Get Guide Info</button>
+                </form>
+                
+                <div id="guide-results" class="results"></div>
+            </div>
+
+            <!-- Ask Question Tab -->
+            <div class="tab-content" id="ask">
+                <h2>💬 Ask a Travel Question</h2>
+                <form id="ask-form" class="form">
+                    <div class="form-group">
+                        <label for="ask-question">Your Question *</label>
+                        <textarea id="ask-question" rows="4" placeholder="e.g., What's the best time to visit Paris?" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Ask Question</button>
+                </form>
+                
+                <div id="ask-results" class="results"></div>
+            </div>
+
+            <!-- Agents Tab -->
+            <div class="tab-content" id="agents">
+                <h2>🤖 Registered Agents</h2>
+                <button id="refresh-agents" class="btn btn-secondary">Refresh</button>
+                <div id="agents-list" class="results"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Travel A2A Agent System - Multi-Agent Travel Planning</p>
+            <p>Built with Agent-to-Agent Protocol & OpenAI</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Processing your request...</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/turndown@7.1.2/dist/turndown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
