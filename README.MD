@@ -252,12 +252,9 @@ pip install -r requirements.txt
 
 ## 🤝 Contributing
 
-Feel free to enhance this project! Areas for contribution:
-- Add more specialized agents
-- Integrate real travel APIs
-- Improve UI/UX
-- Add more sophisticated A2A protocol features
-- Write documentation
+Contributions are welcome.
+
+For setup, workflow, quality expectations, and pull request guidance, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 📝 License
 
